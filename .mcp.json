@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "terraform": {
+      "command": "terraform-mcp-server",
+      "args": []
+    },
+    "aws": {
+      "command": "bunx",
+      "args": ["@modelcontextprotocol/server-aws-kb-retrieval"]
+    }
+  }
+}
