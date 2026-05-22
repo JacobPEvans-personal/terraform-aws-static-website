@@ -18,7 +18,7 @@ permissions:
 jobs:
   plan-tests:
     name: Terraform Plan Tests
-    runs-on: ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && format('runs-on={0}-{1}-{2}/runner=4cpu-linux-x64', github.run_id, github.job, github.run_attempt) || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && format('runs-on={0}/runner=4cpu-linux-x64', github.run_id) || 'ubuntu-latest' }}
 
     services:
       localstack:
@@ -112,7 +112,7 @@ jobs:
   full-tests:
     name: Full LocalStack Integration Tests
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    runs-on: ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && format('runs-on={0}-{1}-{2}/runner=4cpu-linux-x64', github.run_id, github.job, github.run_attempt) || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && format('runs-on={0}/runner=4cpu-linux-x64', github.run_id) || 'ubuntu-latest' }}
 
     services:
       localstack:
