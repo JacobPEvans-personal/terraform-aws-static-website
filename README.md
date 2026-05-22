@@ -12,12 +12,14 @@ A modern, secure, and fully tested Terraform module for hosting high-performance
 This module provisions and configures:
 
 ### Core Infrastructure
+
 - **CloudFront** CDN distributions with HTTPS/TLS 1.2+
 - **S3** buckets with encryption, versioning, and logging
 - **ACM** wildcard SSL/TLS certificates with automatic DNS validation
 - **Route53** DNS records for seamless domain configuration
 
 ### Security & Best Practices
+
 - ✅ **Encryption at rest** for all S3 buckets (AES256)
 - ✅ **S3 versioning** enabled on all buckets
 - ✅ **Public access blocks** configured appropriately
@@ -27,6 +29,7 @@ This module provisions and configures:
 - ✅ **Lambda@Edge support** for custom security headers and behaviors
 
 ### Developer Experience
+
 - 🧪 **LocalStack integration** for local testing
 - 🧪 **Terratest** integration tests with Go
 - 🔄 **Pre-commit hooks** for code quality
@@ -39,7 +42,7 @@ This module provisions and configures:
 | Name | Version |
 |------|---------|
 | [Terraform](https://www.terraform.io/downloads.html) | >= 1.5.0 |
-| [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest) | ~> 5.0 |
+| [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest) | ~> 6.0 |
 
 ### Prerequisites
 
@@ -101,6 +104,7 @@ module "spa_website" {
 ### US-East-1 Requirement
 
 The module requires an aliased AWS provider for `us-east-1` because:
+
 - ACM certificates for CloudFront **must** be created in `us-east-1`
 - These certificates are automatically distributed to all edge locations
 
@@ -151,6 +155,7 @@ make test-local
 ```
 
 **For detailed testing documentation, see [TESTING.md](./TESTING.md)** which includes:
+
 - Complete setup instructions
 - Unit test details
 - Integration test details
@@ -195,6 +200,7 @@ make pre-commit-run
 ```
 
 Hooks include:
+
 - Terraform formatting (`terraform fmt`)
 - Terraform validation (`terraform validate`)
 - TFLint static analysis
@@ -286,6 +292,7 @@ See examples for updated usage patterns.
 ### ACM Certificate Validation Timeout
 
 If certificate validation hangs:
+
 1. Verify Route53 hosted zone exists and is correct
 2. Check DNS propagation with `dig` or `nslookup`
 3. Ensure AWS account has permissions for Route53 record creation
@@ -293,6 +300,7 @@ If certificate validation hangs:
 ### LocalStack Connection Issues
 
 If tests fail with connection errors:
+
 ```bash
 # Check LocalStack health
 docker-compose ps
@@ -343,5 +351,6 @@ This module is licensed under the Apache License, Version 2.0. See [LICENSE](./L
 ## Support
 
 For issues, questions, or contributions:
+
 - **Issues**: [GitHub Issues](https://github.com/JacobPEvans/terraform-aws-static-website/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/JacobPEvans/terraform-aws-static-website/discussions)
