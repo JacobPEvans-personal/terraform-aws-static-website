@@ -5,7 +5,10 @@
 
 A modern, secure, and fully tested Terraform module for hosting high-performance static websites on AWS with CloudFront CDN, S3, ACM certificates, and Route53 DNS.
 
-> **👷 For Contributors:** Before making changes, read our [local-first testing policy](./CONTRIBUTING.md#️-critical-local-first-testing-policy). Run `make install-hooks` to automatically validate code before every commit/push. Run `make validate-local` to run all CI checks locally.
+> **👷 For Contributors:** Before making changes, read our
+> [local-first testing policy](./CONTRIBUTING.md#️-critical-local-first-testing-policy).
+> Run `make install-hooks` to automatically validate code before every
+> commit/push. Run `make validate-local` to run all CI checks locally.
 
 ## Features
 
@@ -237,7 +240,7 @@ See [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) for details.
 
 ## Architecture
 
-```
+```text
 ┌─────────────┐
 │   Route53   │ (DNS A Records)
 └──────┬──────┘
@@ -279,7 +282,16 @@ This module implements AWS security best practices:
 
 ## Migration from Older Versions
 
-This version includes breaking changes for AWS Provider 5.0 compatibility:
+This module targets AWS Provider `~> 6.0`.
+
+### From module 2.x (AWS Provider ~> 5.0) to current
+
+- AWS Provider requirement bumped to `~> 6.0` (parity with the `bedrock`/`runs-on`
+  modules). Review the upstream
+  [terraform-provider-aws v6 upgrade guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/version-6-upgrade)
+  for argument renames and removed deprecations that may affect downstream callers.
+
+### From module 1.x (AWS Provider ~> 4.0) to 2.x
 
 - S3 bucket ACL, logging, and website configurations now use separate resources
 - Minimum Terraform version increased to 1.5.0
