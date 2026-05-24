@@ -27,8 +27,12 @@ live in `examples/`.
 - **No credentials in hooks.** `terraform validate` runs with `init -backend=false`.
 - **CI auth = OIDC only** for any future job needing real AWS access.
 - **release-please** drives version bumps from conventional commits.
-- **RunsOn v3** self-hosted runners for Linux jobs
-  (`runs-on={0}/runner=<size>`, fork-PR fallback to `ubuntu-latest`).
+- **RunsOn v3** self-hosted runners for Linux jobs. Workflows in this
+  repo use `format('runs-on={0}/runner=<size>', github.run_id)` (where
+  `{0}` is the `format()` placeholder substituted by `github.run_id`),
+  with a fork-PR fallback to `ubuntu-latest`. See the canonical label
+  catalog in `JacobPEvans/claude-code-plugins`
+  (`infra-standards/skills/self-hosted-runners/SKILL.md`).
 
 ## Docker-in-CI Exception
 
