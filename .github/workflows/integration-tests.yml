@@ -79,17 +79,7 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Verify LocalStack is ready
-        run: |
-          echo "Waiting for LocalStack to be fully ready..."
-
-          echo "=== LocalStack Health Check ==="
-          curl -s http://localhost:4566/_localstack/health | jq . || echo "Health check failed"
-
-          echo "=== Creating Route53 hosted zone for testing ==="
-          aws --endpoint-url=http://localhost:4566 route53 create-hosted-zone \
-            --name "example.com" \
-            --caller-reference "$(date +%s)" \
-            --hosted-zone-config Comment="Test zone for static website module" || echo "Zone creation may have failed"
+        run: bash scripts/verify-localstack-ready.sh
         env:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
@@ -175,17 +165,7 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Verify LocalStack is ready
-        run: |
-          echo "Waiting for LocalStack to be fully ready..."
-
-          echo "=== LocalStack Health Check ==="
-          curl -s http://localhost:4566/_localstack/health | jq . || echo "Health check failed"
-
-          echo "=== Creating Route53 hosted zone for testing ==="
-          aws --endpoint-url=http://localhost:4566 route53 create-hosted-zone \
-            --name "example.com" \
-            --caller-reference "$(date +%s)" \
-            --hosted-zone-config Comment="Test zone for static website module" || echo "Zone creation may have failed"
+        run: bash scripts/verify-localstack-ready.sh
         env:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
